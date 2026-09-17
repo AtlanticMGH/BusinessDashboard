@@ -1,0 +1,552 @@
+/* =========================================================================
+   business-style.qss
+   Globales Qt-Stylesheet im Corporate-Design von business
+
+   Überarbeitung v2: Grau-Theme statt Navy
+   -------------------------------------------------------------------------
+   Der Kopfbereich (Logo/Tagline) bleibt in der Marken-Navy-Farbe #00204a,
+   wie gewünscht. Alle übrigen Flächen (Fenster, Panels, Inputs, Tabelle,
+   Statusleiste, Tooltips etc.) wurden von Navy auf ein neutrales,
+   mehrstufiges Grau umgestellt. Die Beeren-Akzentfarbe (#d63d73) bleibt
+   unverändert als Highlight-Farbe erhalten.
+
+   EINBINDUNG vor dem Start der Anwendung:
+   -------------------------------------------------------------------------
+   QFile styleFile("unter dem angegebenen Ressourcenpfad");   // über .qrc eingebunden
+   // ODER, falls die Datei lokal bereitliegt:
+   // QFile styleFile("unter dem angegebenen Dateipfad");
+
+   if (styleFile.open(QFile::ReadOnly | QFile::Text)) {
+       QTextStream stream(&styleFile);
+       qApp->setStyleSheet(stream.readAll());
+       styleFile.close();
+   }
+   -------------------------------------------------------------------------
+   Tipp: Datei am besten über eine Qt-Resource-Datei (.qrc) einbinden,
+   dann funktioniert sie auch nach dem Deployment zuverlässig.
+
+   FARBPALETTE (zentrale Referenz)
+   -------------------------------------------------------------------------
+   App-Hintergrund (dunkelst)     #1c1c1e
+   Panel / Karten                 #242426
+   Erhöhte Fläche (Inputs)        #2c2c2e
+   Erhöhte Fläche Hover           #38383a
+   Navy Marke (nur Header)        #00204a
+   Rahmen                         #3a3a3c
+   Rahmen hell/dezent             #333335
+   Zebra-Fläche (Tabelle)         #202022
+   Akzent (Beere)                 #d63d73
+   Akzent Hover                   #e2578a
+   Akzent Pressed                 #b52d5d
+   Akzent Fläche (Auswahl)        #3a1c30
+   Text hell (primär)             #f0f0f2
+   Text gedämpft                  #a8a8ac
+   Text sehr gedämpft             #6e6e72
+   ========================================================================= */
+
+* {
+    font-family: "Inter", "Segoe UI", "Helvetica Neue", sans-serif;
+}
+
+QMainWindow,
+QWidget#centralwidget,
+QDialog,
+QWidget {
+    background-color: #1c1c1e;
+    color: #f0f0f2;
+}
+
+/* ---------- Menüleiste ---------- */
+QMenuBar {
+    background-color: #1c1c1e;
+    color: #f0f0f2;
+    border-bottom: 1px solid #333335;
+    padding: 4px 8px;
+    font-size: 13px;
+}
+QMenuBar::item {
+    background: transparent;
+    color: #a8a8ac;
+    font-weight: 600;
+    padding: 8px 14px 6px 14px;
+    border: none;
+    border-bottom: 2px solid transparent;
+}
+QMenuBar::item:selected {
+    background-color: #2c2c2e;
+    color: #f0f0f2;
+    border-radius: 6px 6px 0 0;
+    border-bottom: 2px solid #d63d73;
+}
+QMenuBar::item:pressed {
+    background-color: #38383a;
+    border-radius: 6px 6px 0 0;
+}
+QMenu {
+    background-color: #242426;
+    color: #f0f0f2;
+    border: 1px solid #3a3a3c;
+    border-radius: 10px;
+    padding: 6px;
+}
+QMenu::item {
+    padding: 8px 24px;
+    border-radius: 6px;
+}
+QMenu::item:selected {
+    background-color: #d63d73;
+    color: #ffffff;
+}
+QMenu::separator {
+    height: 1px;
+    background: #333335;
+    margin: 6px 8px;
+}
+
+/* ---------- Kopfbereich (Marke) ----------
+   Bewusst unverändert in Marken-Navy belassen. */
+QFrame#headerFrame {
+    background-color: #00204a;
+    border: none;
+    border-bottom: 1px solid #143259;
+}
+QLabel#logoLabel {
+    color: #ffffff;
+    font-size: 19px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+}
+QLabel#taglineLabel {
+    color: #93a6c4;
+    font-size: 12px;
+    font-weight: 400;
+    padding-left: 10px;
+    border-left: 1px solid #2c4570;
+    margin-left: 10px;
+}
+
+/* ---------- Suchfeld ---------- */
+QLineEdit#searchEdit {
+    background-color: #2c2c2e;
+    color: #f0f0f2;
+    border: 1px solid #3a3a3c;
+    border-radius: 8px;
+    padding: 7px 14px;
+    font-size: 13px;
+    selection-background-color: #d63d73;
+}
+QLineEdit#searchEdit:focus {
+    border: 1px solid #d63d73;
+    background-color: #333335;
+}
+
+/* generisches Eingabefeld (z. B. in Dialogen) */
+QLineEdit {
+    background-color: #2c2c2e;
+    color: #f0f0f2;
+    border: 1px solid #3a3a3c;
+    border-radius: 8px;
+    padding: 7px 11px;
+    selection-background-color: #d63d73;
+    selection-color: #ffffff;
+}
+QLineEdit:focus {
+    border: 1px solid #d63d73;
+}
+QLineEdit:disabled {
+    background-color: #242426;
+    color: #6e6e72;
+}
+
+/* ---------- Buttons ---------- */
+QPushButton#addButton {
+    background-color: #d63d73;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    padding: 9px 20px;
+    font-size: 13px;
+    font-weight: 600;
+}
+QPushButton#addButton:hover {
+    background-color: #e2578a;
+}
+QPushButton#addButton:pressed {
+    background-color: #b52d5d;
+}
+QPushButton#addButton:disabled {
+    background-color: #5c2d40;
+    color: #a98a95;
+}
+
+/* generischer Button (z. B. OK/Abbrechen in Dialogen) */
+QPushButton {
+    background-color: #2c2c2e;
+    color: #f0f0f2;
+    border: 1px solid #3a3a3c;
+    border-radius: 8px;
+    padding: 8px 18px;
+    font-size: 13px;
+}
+QPushButton:hover {
+    background-color: #38383a;
+    border-color: #d63d73;
+}
+QPushButton:pressed {
+    background-color: #202022;
+}
+QPushButton:disabled {
+    background-color: #242426;
+    color: #6e6e72;
+    border-color: #333335;
+}
+QPushButton:default {
+    background-color: #d63d73;
+    color: #ffffff;
+    border: none;
+}
+QPushButton:default:hover {
+    background-color: #e2578a;
+}
+
+/* ---------- Inhaltsbereich / Karte ---------- */
+QFrame#contentFrame {
+    background-color: transparent;
+}
+QFrame#tableCard {
+    background-color: #242426;
+    border: 1px solid #333335;
+    border-radius: 12px;
+}
+QLabel#sectionTitle {
+    color: #f0f0f2;
+    font-size: 16px;
+    font-weight: 700;
+}
+QLabel#sectionSubtitle {
+    color: #a8a8ac;
+    font-size: 12.5px;
+    font-weight: 400;
+}
+QLabel {
+    color: #f0f0f2;
+    background-color: transparent;
+}
+
+/* ---------- Tabelle ---------- */
+/* Gezielter Fix für schwarze Flächen unter Tabelleninhalten:
+   Der interne Viewport von QAbstractScrollArea-Widgets (Tabelle, Liste,
+   Textfelder ...) ist ein eigenes, unbenanntes Kind-Widget. Fällt bei
+   aktivem System-Dark-Mode kein Hintergrund dafür, zeigt es die dunkle
+   Systempalette in voller Härte statt unseres abgestuften Graus. Dieser
+   Kind-Selektor trifft NUR diesen Viewport - Header-Labels, Buttons etc.
+   bleiben unberührt. Zusätzlich wird die Fläche unterhalb der letzten
+   Zeile (der "leere" Rest des Viewports) so mit erfasst. */
+QAbstractScrollArea > QWidget {
+    background-color: #242426;
+}
+QAbstractScrollArea::corner {
+    background-color: #242426;
+    border: none;
+}
+QTableWidget, QTableView {
+    background-color: #242426;
+    alternate-background-color: #202022;
+    gridline-color: #333335;
+    border: none;
+    color: #f0f0f2;
+    font-size: 13px;
+    selection-background-color: #3a1c30;
+    selection-color: #ffffff;
+}
+QTableWidget::item, QTableView::item {
+    padding: 11px 12px;
+    border-bottom: 1px solid #333335;
+}
+QTableWidget::item:selected, QTableView::item:selected {
+    background-color: #3a1c30;
+    color: #ffffff;
+}
+QTableWidget::item:hover, QTableView::item:hover {
+    background-color: #2c2c2e;
+}
+
+/* ---------- Tabellen-/Listen-Kopfzeile ---------- */
+QHeaderView {
+    background-color: #242426;
+}
+QHeaderView::section {
+    background-color: #242426;
+    color: #b8b8bc;
+    padding: 11px 12px;
+    border: none;
+    border-bottom: 2px solid #d63d73;
+    font-weight: 600;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+QHeaderView::section:hover {
+    color: #f0f0f2;
+    background-color: #2c2c2e;
+}
+QTableCornerButton::section {
+    background-color: #242426;
+    border: none;
+    border-bottom: 2px solid #d63d73;
+}
+
+/* ---------- ComboBox ---------- */
+QComboBox {
+    background-color: #2c2c2e;
+    color: #f0f0f2;
+    border: 1px solid #3a3a3c;
+    border-radius: 8px;
+    padding: 7px 11px;
+}
+QComboBox:hover {
+    border-color: #d63d73;
+}
+QComboBox::drop-down {
+    border: none;
+    width: 24px;
+}
+QComboBox QAbstractItemView {
+    background-color: #242426;
+    color: #f0f0f2;
+    border: 1px solid #3a3a3c;
+    border-radius: 8px;
+    selection-background-color: #d63d73;
+    selection-color: #ffffff;
+    outline: none;
+    padding: 4px;
+}
+
+/* ---------- CheckBox / RadioButton ---------- */
+QCheckBox, QRadioButton {
+    color: #f0f0f2;
+    spacing: 8px;
+    background-color: transparent;
+}
+QCheckBox::indicator, QRadioButton::indicator {
+    width: 16px;
+    height: 16px;
+    border: 1px solid #3a3a3c;
+    background-color: #2c2c2e;
+}
+QCheckBox::indicator {
+    border-radius: 5px;
+}
+QRadioButton::indicator {
+    border-radius: 8px;
+}
+QCheckBox::indicator:hover, QRadioButton::indicator:hover {
+    border-color: #d63d73;
+}
+QCheckBox::indicator:checked, QRadioButton::indicator:checked {
+    background-color: #d63d73;
+    border-color: #d63d73;
+}
+
+/* ---------- Tabs (falls im UI verwendet) ---------- */
+QTabWidget::pane {
+    background-color: #1c1c1e;
+    border: 1px solid #333335;
+    border-radius: 12px;
+    top: -1px;
+}
+QTabBar {
+    background-color: #1c1c1e;
+}
+QTabBar::tab {
+    background: transparent;
+    color: #a8a8ac;
+    padding: 9px 18px;
+    margin-right: 2px;
+    border-bottom: 2px solid transparent;
+    font-size: 13px;
+    font-weight: 500;
+}
+QTabBar::tab:hover {
+    color: #f0f0f2;
+}
+QTabBar::tab:selected {
+    color: #f0f0f2;
+    border-bottom: 2px solid #d63d73;
+    font-weight: 600;
+}
+
+/* ---------- Scrollbars ---------- */
+QScrollBar:vertical {
+    background: #1c1c1e;
+    width: 10px;
+    margin: 2px;
+    border-radius: 5px;
+}
+QScrollBar::handle:vertical {
+    background: #3a3a3c;
+    min-height: 24px;
+    border-radius: 5px;
+}
+QScrollBar::handle:vertical:hover {
+    background: #d63d73;
+}
+QScrollBar::add-line:vertical, QScrollBar::sub-line:vertical { height: 0px; }
+
+QScrollBar:horizontal {
+    background: #1c1c1e;
+    height: 10px;
+    margin: 2px;
+    border-radius: 5px;
+}
+QScrollBar::handle:horizontal {
+    background: #3a3a3c;
+    min-width: 24px;
+    border-radius: 5px;
+}
+QScrollBar::handle:horizontal:hover {
+    background: #d63d73;
+}
+QScrollBar::add-line:horizontal, QScrollBar::sub-line:horizontal { width: 0px; }
+
+/* ---------- Mehrzeilige/einzeilige Texteingabe (Formulare) ---------- */
+QPlainTextEdit, QTextEdit {
+    background-color: #2c2c2e;
+    color: #f0f0f2;
+    border: 1px solid #3a3a3c;
+    border-radius: 8px;
+    padding: 7px 11px;
+    selection-background-color: #d63d73;
+    selection-color: #ffffff;
+}
+QPlainTextEdit:focus, QTextEdit:focus {
+    border: 1px solid #d63d73;
+}
+
+/* ---------- Zahlen-/Preisfeld ---------- */
+QDoubleSpinBox, QSpinBox {
+    background-color: #2c2c2e;
+    color: #f0f0f2;
+    border: 1px solid #3a3a3c;
+    border-radius: 8px;
+    padding: 5px 8px;
+}
+QDoubleSpinBox:focus, QSpinBox:focus {
+    border: 1px solid #d63d73;
+}
+QDoubleSpinBox::up-button, QSpinBox::up-button,
+QDoubleSpinBox::down-button, QSpinBox::down-button {
+    background-color: #38383a;
+    border: none;
+    width: 18px;
+}
+QDoubleSpinBox::up-button:hover, QSpinBox::up-button:hover,
+QDoubleSpinBox::down-button:hover, QSpinBox::down-button:hover {
+    background-color: #3a3a3c;
+}
+
+/* ---------- Listen (z. B. Dateien in der Kundenübersicht) ---------- */
+QListWidget {
+    background-color: #242426;
+    border: 1px solid #333335;
+    border-radius: 10px;
+    padding: 6px;
+    outline: none;
+}
+QListWidget::item {
+    padding: 9px 10px;
+    border-radius: 7px;
+    color: #f0f0f2;
+}
+QListWidget::item:selected {
+    background-color: #3a1c30;
+    color: #ffffff;
+}
+QListWidget::item:hover {
+    background-color: #2c2c2e;
+}
+
+/* ---------- Dialog-Buttons (Ok/Abbrechen) ---------- */
+QDialogButtonBox QPushButton {
+    min-width: 88px;
+}
+
+/* ---------- Kundenübersicht: Detailkarte ---------- */
+QLabel#lblKunde {
+    color: #f0f0f2;
+    font-size: 20px;
+    font-weight: 700;
+}
+QLabel#capBranche, QLabel#capPreis, QLabel#capAuftrag,
+QLabel#capBeschreibung, QLabel#capDateien {
+    color: #a8a8ac;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+QLabel#lblBranche, QLabel#lblPreis, QLabel#lblAuftrag, QLabel#lblBeschreibung {
+    color: #f0f0f2;
+    font-size: 13px;
+}
+
+/* ---------- Fortschrittsanzeige ---------- */
+QProgressBar {
+    background-color: #2c2c2e;
+    border: none;
+    border-radius: 6px;
+    height: 8px;
+    text-align: center;
+    color: transparent;
+}
+QProgressBar::chunk {
+    background-color: #d63d73;
+    border-radius: 6px;
+}
+
+/* ---------- Gruppenrahmen ---------- */
+QGroupBox {
+    border: 1px solid #333335;
+    border-radius: 12px;
+    margin-top: 14px;
+    padding-top: 14px;
+    font-weight: 600;
+    color: #f0f0f2;
+    background-color: transparent;
+}
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 12px;
+    padding: 0 6px;
+    color: #a8a8ac;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* ---------- Tooltips ---------- */
+QToolTip {
+    background-color: #2c2c2e;
+    color: #f0f0f2;
+    border: 1px solid #3a3a3c;
+    padding: 6px 10px;
+    border-radius: 6px;
+}
+
+/* ---------- Statusleiste ---------- */
+QStatusBar {
+    background-color: #141416;
+    color: #a8a8ac;
+    border-top: 1px solid #333335;
+    font-size: 12px;
+    padding: 3px 8px;
+}
+
+/* =========================================================================
+   TITELLEISTE (Frameless Window)
+   -------------------------------------------------------------------------
+   Sobald du mir Objekt-/Klassennamen deiner custom Titelleiste (z. B.
+   #titleBar, #btnMinimize, #btnMaximize, #btnClose, #btnPin) nennst,
+   ergänze ich hier die passenden Regeln, damit sie zum restlichen
+   Design passt (Grau-Theme / Beere #d63d73, Header bleibt Navy #00204a).
+   ========================================================================= */

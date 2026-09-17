@@ -1,0 +1,54 @@
+#include "kundenHinzufuegenWindow.h"
+#include "ui_kundenHinzufuegenWindow.h"
+
+kundenHinzufuegenWindow::kundenHinzufuegenWindow(QWidget *parent) :
+    QDialog(parent),
+    ui(new Ui::kundenHinzufuegenWindow)
+{
+    ui->setupUi(this);
+    ui->nameTextEdit->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    ui->nameTextEdit->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    ui->brancheTextEdit->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    ui->brancheTextEdit->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    ui->adresseTextEdit->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    ui->adresseTextEdit->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
+    ui->nameTextEdit->document()->setDocumentMargin(2);
+    ui->brancheTextEdit->document()->setDocumentMargin(2);
+    ui->adresseTextEdit->document()->setDocumentMargin(2);
+}
+
+QString kundenHinzufuegenWindow::getName() const
+{
+    return ui->nameTextEdit->toPlainText();
+}
+
+QString kundenHinzufuegenWindow::getBranche() const
+{
+    return ui->brancheTextEdit->toPlainText();
+}
+
+double kundenHinzufuegenWindow::getPreis() const
+{
+    return ui->doubleSpinBox->value();
+}
+
+QString kundenHinzufuegenWindow::getAuftragsart() const
+{
+    return ui->comboBox->currentText();
+}
+
+QString kundenHinzufuegenWindow::getAdresse() const
+{
+    return ui->adresseTextEdit->toPlainText();
+}
+
+QString kundenHinzufuegenWindow::getBeschreibung() const
+{
+    return ui->beschreibungTextEdit->toPlainText();
+}
+
+kundenHinzufuegenWindow::~kundenHinzufuegenWindow()
+{
+    delete ui;
+}
